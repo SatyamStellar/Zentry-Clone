@@ -1,23 +1,26 @@
-import About from "./components/About";
-import Contact from "./components/Contact";
-import Features from "./components/Features";
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
-import Story from "./components/Story";
+import { lazy, Suspense } from "react";
+
+const Navbar = lazy(() => import("./components/Navbar"));
+const Hero = lazy(() => import("./components/Hero"));
+const About = lazy(() => import("./components/About"));
+const Features = lazy(() => import("./components/Features"));
+const Story = lazy(() => import("./components/Story"));
+const Contact = lazy(() => import("./components/Contact"));
+const Footer = lazy(() => import("./components/Footer"));
 
 function App() {
   return (
     <main className="relative min-h-screen w-screen overflow-x-hidden">
-      <Navbar />
-      <Hero />
-      <About />
-      <Features />
-      <Story />
-      <Contact />
-      <Footer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Navbar />
+        <Hero />
+        <About />
+        <Features />
+        <Story />
+        <Contact />
+        <Footer />
+      </Suspense>
     </main>
-
   );
 }
 
